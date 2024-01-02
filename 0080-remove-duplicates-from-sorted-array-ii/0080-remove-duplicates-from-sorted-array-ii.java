@@ -2,7 +2,8 @@ class Solution {
     public int removeDuplicates(int[] nums) {
         
         int n = nums.length;
-
+        
+        //Base case
         if (n < 3) return n;
 
         int d = 2;
