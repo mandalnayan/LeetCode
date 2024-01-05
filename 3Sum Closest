@@ -1,5 +1,6 @@
 // Problem Link -> https://www.geeksforgeeks.org/problems/3-sum-closest/1
 // Problem Description: Given an array A[] of N integers and an integer X. The task is to find the sum of three integers in A[] such that it is closest to X.
+
 /* Example: N = 5
 A[] = {1, 2, 3, 4, -5}
 X = 10
