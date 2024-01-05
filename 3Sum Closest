@@ -1,0 +1,45 @@
+// Problem Link -> https://www.geeksforgeeks.org/problems/3-sum-closest/1
+// Problem Description: Given an array A[] of N integers and an integer X. The task is to find the sum of three integers in A[] such that it is closest to X.
+/* Example: N = 5
+A[] = {1, 2, 3, 4, -5}
+X = 10
+Output: 9
+Explaination: 
+Sums of triplets:
+1 + 2 + 3 = 6
+2 + 3 + 4 = 9
+1 + 3 + 4 = 7
+...
+9 is closest to 10.
+*/
+// Approach : Using "Sorting and two pointer" is one of the easiest solution.    ** Time Complexity : O(n²) | Space Complexity : O(1)
+// Code
+class Solution
+{
+    static int closest3Sum(int A[], int n, int x)
+    {
+        // Base case
+        if (n == 3) return (A[0] + A[1] + A[2]);
+        int ans = Integer.MIN_VALUE;            // Store the result at ans
+        int mgap = Integer.MAX_VALUE;          // Indicate the closet gap of between "X and current triplet sum"
+        Arrays.sort(A);
+        for (int i = 0; i < n; i++) {
+            int l = i+1, r = n-1;
+            while(l < r) {
+                 int curS = (A[i] + A[l] + A[r]);
+                 if (curS == x) return x;
+                 int curD = Math.abs(x - curS); 
+                 if (curD < mgap) {
+                        ans = curS;
+                        mgap = curD;
+                    } 
+                if (curS < x) l++;
+                else {
+                    r--;
+                }
+            }
+        }        
+        return ans;      
+    }
+}
+// Problem Link -> https://www.geeksforgeeks.org/problems/3-sum-closest/1
