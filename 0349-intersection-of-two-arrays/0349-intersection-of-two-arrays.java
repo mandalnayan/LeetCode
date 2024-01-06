@@ -3,11 +3,36 @@ class Solution {
         
         int n1 = nums1.length;
         int n2 = nums2.length;
+                
+//  Optima solution using HashSet  => Time Complexity : O(n) | Space Complexity : O(1)
+        HashSet<Integer> st1 = new HashSet<Integer> ();
+        HashSet<Integer> st2 = new HashSet<Integer> ();
         
-        ArrayList<Integer> ls = new ArrayList<>();
+//  Coping of first array element in first HashSet
+        int i = 0;
+        while (i < n1) st1.add(nums1[i++]);
+        
+//  Coping of second array element in second HashSet
+        i = 0;
+        while (i < n2) st2.add(nums2[i++]);
+    
+        // Set<Integer> st3 = Sets.intersection(st1, st2);
+        st2.retainAll(st1);
+        
+        int ans[] = new int[st2.size()];
+        
+        Iterator<Integer> it = st2.iterator();  
+        i = 0;
+        while (it.hasNext()) ans[i++] = it.next();
+        
+        return ans; 
+    }
+}
+        /*         
         
 //  Better solution using Sorting  => Time Complexity : O(nlogn) | Space Complexity : O(1)
-        
+       ArrayList<Integer> ls = new ArrayList<>();
+
         Arrays.sort(nums1);
         Arrays.sort(nums2);
         
@@ -34,6 +59,9 @@ class Solution {
 }
 /*
 // Brute force approach using nested loop; => Time Complexity : O(nlogn) | Space Complexity : O(1)
+
+        ArrayList<Integer> ls = new ArrayList<>();
+
         for (int i = 0; i < n1; i++) {
         for (int j = 0; j < n2; j++){
             if (nums1[i] == nums2[j]){
