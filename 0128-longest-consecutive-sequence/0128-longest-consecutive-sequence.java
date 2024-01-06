@@ -4,10 +4,7 @@ class Solution {
         int n = nums.length;
         
         if (n <= 1) return n;
-        
-        Arrays.sort(nums);
-        
-        
+                 
 //      Optimal Solution using HashMap
         
         HashMap<Integer, Boolean> map = new HashMap<>();
@@ -38,7 +35,8 @@ class Solution {
         
         /*
         // Better solution using "Sorting" | Time Complexity : O(nlogn) | Space Complexity : O(1)
-        
+         Arrays.sort(nums);
+         
         for (int i = 0; i < n-1; i++) {
             int cur =  nums[i];
             int next =  nums[i+1];
