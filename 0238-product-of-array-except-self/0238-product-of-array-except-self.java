@@ -1,10 +1,7 @@
 class Solution {
     public int[] productExceptSelf(int[] A) {
-        
         int n = A.length;
-        
         int ans[] = new int[n];
-        
 //       Base case
         if (n == 2) {
             ans[0] = A[1];
@@ -33,10 +30,7 @@ class Solution {
      
   }
  }
-                
-        
-//         
-        
+
 /*
 // Better Approach   => Time Complaxity : O(n) | Space Complexity : O(1)
 // Approach : To get Product of array except ith = Multiply whole array and divide with ith elment
@@ -49,9 +43,7 @@ class Solution {
              else {
                  mult *= A[i];
              }
-            
              if (zeroC == 2) break;
-            
         }
         
 //      Handling with zeor value if it exist in the array
@@ -70,10 +62,6 @@ class Solution {
                 ans[i] = (mult / A[i]);
             }
         }
-        
-        return ans;
-    }
-}
  /*       
 //   **** Brute force approach  => Time Complexity : O(n^2) | Space Complexity : O(1)
         
@@ -86,10 +74,6 @@ class Solution {
                     if (ans[i] == 0) break;
                 }
             }
-             
-        }
-        return ans;           
+         }
 
-    }
-}
 */
