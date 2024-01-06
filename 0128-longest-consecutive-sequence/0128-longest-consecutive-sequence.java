@@ -12,22 +12,22 @@ class Solution {
         for (int i = 0; i < n; i++) 
               map.add(nums[i]);
         
-        int ans = 1, i = 0;
-        while (i < n) {
+        int ans = 1;
+        
+        // Iterating over hashSet items 
+        Iterator<Integer> i = map.iterator();
+        
+        while (i.hasNext()) {
             
-            int CV = nums[i];
+            int CV = i.next();
             
 //       checking is it's previous value present, if not then curent value is starting point
             if (!map.contains(CV - 1)) {
                 
                 int CL = 1;
-                
                 while (map.contains(CL + CV))  CL++;
-                
-                                
                 ans = Math.max(CL, ans);
             }
-            i++;
         }
         
         return ans;
