@@ -12,6 +12,9 @@ class Solution {
             return ans;
         }
         
+// Optimal Approach    :: Time Complaxity : O(n) | Space Complexity : O(1)
+// Approach : To get Product of array except ith = Multiply whole array and divide with ith elment
+        
 //      Calculating the multiplacation of whole array
         int mult = 1;
         int zeroC = 0;
@@ -25,15 +28,19 @@ class Solution {
             
         }
         
+//      Handling with zeor value if it exist in the array
+//      If at least two zeros, then multiplication of all element except self must be zero   
         if (zeroC == 2) return ans;
-        
-        for (int i = 0; i < n; i++) {
-            if (zeroC == 1){
+        else if (zeroC == 1) {       
+            for (int i = 0; i < n; i++) {
                 if (A[i] == 0) {
                 ans[i] = mult;
                 break;
                 }
-            } else {
+            }
+        }
+        else {        
+        for (int i = 0; i < n; i++) {
                 ans[i] = (mult / A[i]);
             }
         }
