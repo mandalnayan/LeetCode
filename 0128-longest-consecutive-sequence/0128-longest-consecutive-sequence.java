@@ -5,12 +5,12 @@ class Solution {
         
         if (n <= 1) return n;
                  
-//      Optimal Solution using HashMap
+//      Optimal Solution using HashSet | Time Complexity : O(n) | Space Complexity : O(n)
         
-        HashMap<Integer, Boolean> map = new HashMap<>();
+        HashSet<Integer> map = new HashSet<>();
         
         for (int i = 0; i < n; i++) 
-            if (!map.containsKey(nums[i])) map.put(nums[i], true);
+              map.add(nums[i]);
         
         int ans = 1, i = 0;
         while (i < n) {
@@ -18,11 +18,13 @@ class Solution {
             int CV = nums[i];
             
 //       checking is it's previous value present, if not then curent value is starting point
-            if (!map.containsKey(CV - 1)) {
+            if (!map.contains(CV - 1)) {
+                
                 int CL = 1;
                 
-                while (map.containsKey(CL + CV)) CL++;
+                while (map.contains(CL + CV))  CL++;
                 
+                                
                 ans = Math.max(CL, ans);
             }
             i++;
