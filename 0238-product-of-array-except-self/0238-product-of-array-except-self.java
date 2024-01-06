@@ -13,6 +13,32 @@ class Solution {
         }
         
 // Optimal Approach    :: Time Complaxity : O(n) | Space Complexity : O(1)
+// Approach : To get Product of array except ith = product of left subarray * product of right subarray 
+//      ans[i] = multiply(0 to (i-1)) * multiply(i+1 to n);
+        
+//      Product of left subarray of ith element
+        int m = 1;
+        for (int i = 0; i < n; i++) {
+            ans[i] = m;
+            m *= A[i];
+        }
+        
+//      Product of right subarray
+        m = 1;
+        for (int i = n-1; i >=0; i--) {
+            ans[i] *= m;
+            m *= A[i];
+        }
+       return ans;
+     
+  }
+ }
+                
+        
+//         
+        
+/*
+// Better Approach   => Time Complaxity : O(n) | Space Complexity : O(1)
 // Approach : To get Product of array except ith = Multiply whole array and divide with ith elment
         
 //      Calculating the multiplacation of whole array
@@ -49,7 +75,7 @@ class Solution {
     }
 }
  /*       
-//   ****      Brute force approach  => Time Complexity : O(n^2) | Space Complexity : O(1)
+//   **** Brute force approach  => Time Complexity : O(n^2) | Space Complexity : O(1)
         
         for (int i = 0; i < n; i++) {
             ans[i] = 1;
