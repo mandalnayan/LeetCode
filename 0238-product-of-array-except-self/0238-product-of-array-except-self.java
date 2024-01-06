@@ -1,3 +1,7 @@
+// Optimal Approach    :: Time Complaxity : O(n) | Space Complexity : O(1)
+// Approach : To get Product of array except ith = product of left subarray * product of right subarray 
+//      ans[i] = multiply(0 to (i-1)) * multiply(i+1 to n);
+        
 class Solution {
     public int[] productExceptSelf(int[] A) {
         int n = A.length;
@@ -8,11 +12,6 @@ class Solution {
             ans[1] = A[0];
             return ans;
         }
-    
-// Optimal Approach    :: Time Complaxity : O(n) | Space Complexity : O(1)
-// Approach : To get Product of array except ith = product of left subarray * product of right subarray 
-//      ans[i] = multiply(0 to (i-1)) * multiply(i+1 to n);
-        
 //      Product of left subarray of ith element
         int m = 1;
         for (int i = 0; i < n; i++) {
