@@ -6,15 +6,14 @@ class Solution {
         
 //       Finding right sum
         int rs = 0;
-        for (int j = 1; j < n; j++) rs += nums[j];
+        for (int j = 0; j < n; j++) rs += nums[j];
         
         int ls = 0;
-        for (int i = 0; i < n-1; i++) {
+        for (int i = 0; i < n; i++) {
+            rs -= nums[i];
             if (ls == rs) return i;
             ls += nums[i];
-            rs -= nums[i+1];
         }
-        if (ls == rs) return n-1;
         return -1;
     }
 }
