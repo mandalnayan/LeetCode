@@ -4,14 +4,20 @@ class Solution {
 //         Base case
         if (n == 1) return;
         
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < n-i; j++) {
-                if (nums[j] < nums[j-1]) {
-                    int t = nums[j];
-                    nums[j] = nums[j-1];
-                    nums[j-1] = t;
-                }
-            }
-        }
+        int cz = 0;
+        int i = 0;
+        while (i < n) if (nums[i++] == 0) cz++;
+        
+        int c1 = 0;
+        i = 0;
+        while (i < n) if (nums[i++] == 1) c1++;
+              
+        i = 0;
+        while (cz-- > 0)nums[i++] = 0;
+        while (c1-- > 0)nums[i++] = 1;
+        while (i < n)nums[i++] = 2;
+
+
+               
     }
 }
