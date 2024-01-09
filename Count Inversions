@@ -1,9 +1,5 @@
 // GFG problem link :-> https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1
 
-// Problem Statement : Given an array of integers. Find the Inversion Count in the array. 
-Inversion Count: For an array, inversion count indicates how far (or close) the array is from being sorted. If the array is already sorted then the inversion count is 0.
-If an array is sorted in the reverse order then the inversion count is the maximum. 
-
 // Approach : Using merge sort we can find how many inversion(swap) required to sort the array.
 
 Time Complexity : O(nlogn) || Space Complexity : O(n)
