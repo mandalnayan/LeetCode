@@ -1,7 +1,6 @@
 // GFG problem link :-> https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1
 
 // Approach : Using merge sort we can find how many inversion(swap) required to sort the array.
-
 Time Complexity : O(nlogn) || Space Complexity : O(n)
 
 // # Code
