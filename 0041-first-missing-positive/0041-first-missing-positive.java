@@ -2,7 +2,30 @@ class Solution {
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;
         
-        // Approach -1  Using HashMap
+        for (int i = 0; i < n; i++) {
+            int val = nums[i];
+            if (val != i+1 && val > 0 && val <= n) {
+                int indx = val - 1;
+                if (nums[i] == nums[indx]) continue;
+                int temp = nums[indx];
+                nums[indx] = val;
+                nums[i] = temp;
+                i--;
+            }
+        }
+        
+        int i = 1;
+        while (i <= n) {
+            if (nums[i-1] != i) break;
+            i++;
+        }
+        return i;
+    }
+}
+        
+        /*
+        
+    // Approach -1  Using HashMap || TimeComplexity : O(n)  | Space Complexity: O(n)
         HashMap<Integer, Boolean> map = new HashMap<>();
         
         int i = 0;
