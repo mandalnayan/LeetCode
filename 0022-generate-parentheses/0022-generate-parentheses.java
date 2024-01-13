@@ -15,8 +15,8 @@ class Solution {
             while (cl-- > 0) cs += ")";
             list.add(cs);
         } else {
-           generate(op-1, cl, cs+"(" , list);
-           generate(op, cl-1,  cs+")", list);            
+           if (op > 0) generate(op-1, cl, cs+"(" , list);
+           if (cl > op)generate(op, cl-1,  cs+")", list);            
         }
     }
 }
