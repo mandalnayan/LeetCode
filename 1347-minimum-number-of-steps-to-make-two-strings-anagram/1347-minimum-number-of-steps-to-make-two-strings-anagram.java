@@ -1,6 +1,30 @@
 class Solution {
     public int minSteps(String s, String t) {
         int n = s.length();
+        //Using sorting
+        char ar1[] = s.toCharArray();
+        char ar2[] = t.toCharArray();
+        
+        Arrays.sort(ar1);
+        Arrays.sort(ar2);
+        
+        int steps = 0, i = 0, j = 0;
+        while(i < n  && j < n) {
+            if (ar1[i] == ar2[j]){
+                i++;
+                j++;
+            } else if(ar1[i] > ar2[j])j++;
+            else {
+                steps++;
+                i++;
+            }
+        }
+        steps += n-i;
+        return steps;        
+    }
+}
+        /*
+        // Using  HashMap
         HashMap<Character, Integer> mp1 = new  HashMap<>();
         
         mapped(s, n, mp1);
@@ -29,3 +53,4 @@ class Solution {
         }
     }
 }
+*/
