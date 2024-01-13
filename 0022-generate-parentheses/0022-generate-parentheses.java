@@ -11,8 +11,7 @@ class Solution {
     void generate(int op, int cl, String cs, List<String> list) {
         if (op > cl) return;
         
-        if (op == 0) {
-            while (cl-- > 0) cs += ")";
+        if (op == 0 && cl == 0) {
             list.add(cs);
         } else {
            if (op > 0) generate(op-1, cl, cs+"(" , list);
