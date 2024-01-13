@@ -1,20 +1,22 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
+        List<String> list = new ArrayList<String>();
         
-        return generate(n, n, "", new ArrayList<String>());
+        generate(n, n, "", list);
+        
+        return list;
     }
     
     // Function to generate all well-formed parenntheses
-    List<String> generate(int op, int cl, String cs, List<String> list) {
-        if (op > cl) return list;
+    void generate(int op, int cl, String cs, List<String> list) {
+        if (op > cl) return;
         
         if (op == 0) {
             while (cl-- > 0) cs += ")";
             list.add(cs);
         } else {
-           list = generate(op-1, cl, cs+"(" , list);
-           list = generate(op, cl-1,  cs+")", list);            
+           generate(op-1, cl, cs+"(" , list);
+           generate(op, cl-1,  cs+")", list);            
         }
-        return list;
     }
 }
