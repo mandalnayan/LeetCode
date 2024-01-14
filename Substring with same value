@@ -1,0 +1,16 @@
+//# Question link -> https://practice.geeksforgeeks.org/contest/gfg-weekly-coding-contest-137/problems
+class Solution {
+    public static int totalCount(int n, String s) {
+        // code here
+        if (n == 1) return 1;
+        
+        int mod = (int)(Math.pow(10, 9)+7);
+        int i = n-1, ans = 0;
+        char val = s.charAt(0);
+        while(i >= 0){
+            if (s.charAt(i) == val) ans = (ans + n - i) % mod;
+            i--;
+        }
+        return ans;
+    }
+}
