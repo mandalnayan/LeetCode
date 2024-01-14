@@ -1,4 +1,5 @@
 //# Question link -> https://practice.geeksforgeeks.org/contest/gfg-weekly-coding-contest-137/problems
+// Time Complixity : O(n) | Space Complexity : O(1)
 class Solution {
     public static int totalCount(int n, String s) {
         // code here
