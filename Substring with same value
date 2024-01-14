@@ -1,8 +1,8 @@
 //# Question link -> https://practice.geeksforgeeks.org/contest/gfg-weekly-coding-contest-137/problems
 // Time Complixity : O(n) | Space Complexity : O(1)
+#Code
 class Solution {
     public static int totalCount(int n, String s) {
-        // code here
         if (n == 1) return 1;
         
         int mod = (int)(Math.pow(10, 9)+7);
