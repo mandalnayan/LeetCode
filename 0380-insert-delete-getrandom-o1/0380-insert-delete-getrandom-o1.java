@@ -14,14 +14,9 @@ class RandomizedSet {
     
     public int getRandom() {
         Random rdm = new Random();
-        int rdm_number = rdm.nextInt(set.size()), curindx = 0;
-        Iterator itr = set.iterator();
-        while(itr.hasNext()) {
-            Object value = itr.next();
-          if (curindx == rdm_number) return (int)value;
-          curindx++;
-        }
-       return -1;
+        int rdm_number = rdm.nextInt(set.size());
+        Object arr[] = set.toArray(); 
+        return (int)arr[rdm_number];
 
     }
 }
