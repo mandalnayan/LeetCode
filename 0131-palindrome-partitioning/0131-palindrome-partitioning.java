@@ -5,27 +5,26 @@ class Solution {
 
         // Base case
 
-        rec(s, ans, new ArrayList<>());   
+        rec(s, 0, ans, new ArrayList<>());   
         return ans;
     }
-    public void rec(String s, List<List<String>> ans, ArrayList<String> ls){
-      if (s.length() == 0) {
+    public void rec(String s,int index, List<List<String>> ans, ArrayList<String> ls){
+      if (s.length() == index) {
         ans.add(new ArrayList<String>(ls));
         return;
       }
-      int i  =  1;
-      while(i <= s.length()) {
-        if (isPlindrome(s.substring(0, i))) {
-          ls.add(s.substring(0, i));
-          rec(s.substring(i), ans,ls);
+      int i = index;
+      while(i < s.length()) {
+        if (isPlindrome(s,index, i)) {
+          ls.add(s.substring(index,i+1));
+          rec(s,i+1, ans, ls);
           ls.remove(ls.size()-1);
         }
         i++;          
       }       
     }
   
-    boolean isPlindrome(String s) {
-        int l = 0, r = s.length()-1;
+    boolean isPlindrome(String s, int l, int r) {
         while(l < r) if (s.charAt(l++) != s.charAt(r--)) return false;
         return true;         
     }
