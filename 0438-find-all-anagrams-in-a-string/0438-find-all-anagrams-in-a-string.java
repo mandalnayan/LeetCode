@@ -14,7 +14,7 @@ class Solution {
            char ch = p.charAt(i++);
            pmap.put(ch, pmap.getOrDefault(ch, 0)+1);        
          }    
-       // Storing frequency of P string
+       // Storing frequency of S string
        i = 0;
        while(i < m){
            char ch = s.charAt(i++);
