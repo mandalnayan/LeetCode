@@ -1,0 +1,27 @@
+// Permutations of a given string.
+// Question link 'GFG': https://www.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
+
+class Solution {
+    public List<String> find_permutation(String S) {
+        // Use Set to store unique permutation
+        Set<String> ans = new HashSet<>();
+        func(ans, "",0, S, new int[S.length()]);
+        List<String> ls = new ArrayList<>(ans);
+        Collections.sort(ls);
+        return ls;
+    }
+  public void  func(Set<String> ans, String curStr, int indx, String s, int arr[]) {
+        if (s.length() == curStr.length()) {
+            ans.add(curStr);
+        }
+        while(indx < s.length()) {
+            if(arr[indx] != -1) {
+                arr[indx] = -1;
+                func(ans, curStr + s.charAt(indx), 0, s, arr);
+                arr[indx] = 0;
+            }
+            indx++;
+        }
+    }
+    
+}
