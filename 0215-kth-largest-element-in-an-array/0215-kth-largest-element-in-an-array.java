@@ -3,15 +3,19 @@ class Solution {
      int n = nums.length;
       if(n == 1) return nums[0];
       
-      Queue<Integer> qu = new PriorityQueue<>(Collections.reverseOrder());
+      Queue<Integer> qu = new PriorityQueue<>();
       int i = 0;
-      while(i < n) {
+      while(i < k) {
         qu.add(nums[i++]);
       }
-      while(k-- > 1) {
-        qu.remove();
+      while(k < n) {
+        int val = nums[k++];
+        if(val > qu.peek()) {
+          qu.remove();
+          qu.add(val);
+        }
       }
-      return qu.peek();
+return qu.peek();
       
     }
 }
