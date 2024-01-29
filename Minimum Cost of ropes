@@ -1,0 +1,25 @@
+GFG Question link : https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1
+class Solution
+{
+    //Function to return the minimum cost of connecting the ropes.
+    long minCost(long arr[], int n) 
+    {
+        // Base case
+        if (n == 1) return 0;
+        if (n == 2) return arr[0] + arr[1];
+        
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        
+        // Adding all value into the priority Queue which will work as minHeap
+        for (long num : arr) pq.add(num);
+        
+        long totalCost = 0;
+        while(pq.size() > 1) {
+            long sum = pq.remove() + pq.remove();
+            pq.add(sum);
+            totalCost += sum;
+        }
+        
+        return totalCost;
+    }
+}
