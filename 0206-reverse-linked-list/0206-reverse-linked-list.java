@@ -9,6 +9,27 @@
  * }
  */
 class Solution {
+  ListNode revhead = null;
+  public ListNode reverseList(ListNode head) {
+    if (head == null || head.next == null) return head;
+    reverse(head);
+    return revhead;
+  }
+  public void reverse(ListNode head) {
+      if (head.next == null) {
+        revhead = head;
+      } else {
+           reverse(head.next);
+           head.next.next = head;
+           head.next = null;
+      }
+  }
+}
+
+/**
+
+// Solve through Iteration 
+class Solution {
     public ListNode reverseList(ListNode head) {
       if (head == null || head.next == null) return head;
       
@@ -23,3 +44,4 @@ class Solution {
       return prevNode;
     }
 }
+*/
