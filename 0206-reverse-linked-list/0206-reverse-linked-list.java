@@ -8,6 +8,9 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+// Using Recursion technique
+
 class Solution {
   ListNode revhead = null;
   public ListNode reverseList(ListNode head) {
