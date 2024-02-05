@@ -3,13 +3,14 @@ class Solution {
       int n = s.length();
       
       if (n == 1) return 0;
-      int i = 0;
-      while(i < n) {
-        char ch = s.charAt(i);
-        // If character is not repeating then first occurance and last occurance is same
-        if (s.indexOf(ch) == s.lastIndexOf(ch)) return i;  
-        i++;
+      int ans = Integer.MAX_VALUE;
+      for (char ch = 'a' ; ch <= 'z'; ch++) {
+          // Return the index of first occurance of this character, if not present return -1
+          int index = s.indexOf(ch);     
+          // lastIndexOf return the last occurace, if both are same, means it is unique
+          if (index != -1 && index == s.lastIndexOf(ch)) ans = Math.min(ans, index);  
       }
-      return -1;
+      return ans == Integer.MAX_VALUE ? -1 : ans;
+
     }
 }
