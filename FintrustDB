@@ -1,0 +1,104 @@
+DB table code.
+
+
+CREATE TABLE `account` (
+  `account_no` bigint NOT NULL,
+  `balance` double NOT NULL,
+  `account_type` enum('SAVING','CURRENT','SALARY') NOT NULL,
+  `account_status` enum('ACTIVE','INACTIVE','CLOSED') DEFAULT 'ACTIVE',
+  `branch_name` varchar(100) NOT NULL,
+  `mode_of_operation` enum('SELF','JOINT','EITHER_OR_SURVIVOR') NOT NULL,
+  `nominee_id` bigint unsigned DEFAULT NULL,
+  `customer_id` bigint unsigned DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`account_no`),
+  KEY `nominee_id` (`nominee_id`),
+  KEY `customer_id` (`customer_id`),
+  CONSTRAINT `account_ibfk_1` FOREIGN KEY (`nominee_id`) REFERENCES `nominee` (`nominee_id`),
+  CONSTRAINT `account_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
+  CONSTRAINT `account_chk_1` CHECK ((`balance` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `account_update_request` (
+  `request_id` bigint NOT NULL AUTO_INCREMENT,
+  `account_no` bigint NOT NULL,
+  `new_account_type` enum('SAVINGS','CURRENT','SALARY') DEFAULT NULL,
+  `new_branch_name` varchar(100) DEFAULT NULL,
+  `new_mode_of_operation` enum('SELF','JOINT') DEFAULT NULL,
+  `status` enum('PENDING','APPROVED','REJECTED') DEFAULT 'PENDING',
+  `requested_by` bigint DEFAULT NULL,
+  `reviewed_by` bigint DEFAULT NULL,
+  `request_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `review_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`request_id`),
+  KEY `account_no` (`account_no`),
+  CONSTRAINT `account_update_request_ibfk_1` FOREIGN KEY (`account_no`) REFERENCES `account` (`account_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `card` (
+  `card_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `card_number` char(16) NOT NULL,
+  `customer_id` bigint unsigned NOT NULL,
+  `account_no` bigint NOT NULL,
+  `cvv` char(3) NOT NULL,
+  `pin` char(4) NOT NULL,
+  `issued_date` date DEFAULT (curdate()),
+  `expiry_date` date GENERATED ALWAYS AS ((`issued_date` + interval 3 year)) STORED,
+  `card_status` varchar(20) DEFAULT 'Active',
+  `maximum_limit` int DEFAULT '50000',
+  PRIMARY KEY (`card_id`),
+  UNIQUE KEY `card_number` (`card_number`),
+  KEY `customer_id` (`customer_id`),
+  KEY `account_no` (`account_no`),
+  CONSTRAINT `card_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
+  CONSTRAINT `card_ibfk_2` FOREIGN KEY (`account_no`) REFERENCES `account` (`account_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `card_request` (
+  `request_no` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `card_type` varchar(30) NOT NULL,
+  `card_category` varchar(30) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `card_request_status` varchar(20) DEFAULT 'PENDING',
+  `customer_id` bigint unsigned NOT NULL,
+  `account_no` bigint NOT NULL,
+  `requested_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`request_no`),
+  KEY `account_no` (`account_no`),
+  KEY `customer_id` (`customer_id`),
+  CONSTRAINT `card_request_ibfk_1` FOREIGN KEY (`account_no`) REFERENCES `account` (`account_no`),
+  CONSTRAINT `card_request_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `customer` (
+  `customer_id` bigint unsigned NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+  `dist` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `pincode` varchar(10) DEFAULT NULL,
+  `dob` varchar(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `registered_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(20) DEFAULT 'Active',
+  `image` varchar(50) DEFAULT NULL,
+  `twoFactor` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `nominee` (
+  `nominee_id` bigint unsigned NOT NULL,
+  `nominee_name` varchar(100) NOT NULL,
+  `nominee_relation` varchar(50) NOT NULL,
+  PRIMARY KEY (`nominee_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
